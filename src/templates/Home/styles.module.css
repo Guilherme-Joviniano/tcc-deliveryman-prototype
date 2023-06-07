@@ -1,0 +1,29 @@
+
+
+
+.main {
+    display: flex;    
+}
+
+.route-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    height: 100vh;
+}
+
+.chat-column {
+    margin-top: 5vh;
+    width: 40vw;
+    height: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+}
+
+
+
+  
+
