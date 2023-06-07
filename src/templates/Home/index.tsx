@@ -69,7 +69,7 @@ export const Home = () => {
             <Navbar />
             <div className={styles['route-container']}>
                 {route && (
-                    <LoadScript googleMapsApiKey='AIzaSyCDdjSa4towU8PmPM69QoPItOkOz7xOXII'>
+                    <LoadScript googleMapsApiKey=''>
                         <Route 
                            setPreviewTime={setTime}
                            setDistance={setDistance}
