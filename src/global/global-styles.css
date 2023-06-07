@@ -75,8 +75,8 @@
   /* Set the font size and weight */
   font-size: 16px;
   font-weight: 600;
-  width: 200px;
-  max-height: 150px;
+  width: 400px;
+  max-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,11 +86,11 @@
 
   /* Set the cursor to pointer */
   cursor: pointer;
+  font-size: 2rem;
+  text-align: center;
+  transition: 300ms all;  
+}
 
-  transition: 300ms all;
-
-  /* Add a hover effect */
-  &:hover {
-    background-color: rgb(221, 51, 51);
-  }
+.button:hover {
+  background-color: rgb(221, 51, 51);
 }

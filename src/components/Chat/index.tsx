@@ -21,7 +21,7 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
   const { from, _to } = args;
   const chatService = new ChatService();
 
-  const [messages, setMessages] = useState<IMessage | any>();
+  const [messages, setMessages] = useState<IMessage | any[]>([]);
 
 
   const [to, setTo] = useState(_to);
@@ -31,8 +31,8 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await chatService.index(from, to.id);
-      setMessages(res);
+      const { data } = await chatService.index(from, to.id);
+      setMessages(data);
     };
     fetch().then();
   }, []);
@@ -48,11 +48,15 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
       toName: to.name,
     });
 
+    
+
     setMessages([...messages, { content, sender: 'user' }]);
   };
 
   useEffect(() => {
     socket.on('chat_message', async (data) => {
+      console.log(data);
+      
       const { content } = data;
       setMessages([...messages, { content, sender: to.name }]);
     });
@@ -69,6 +73,8 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
     fromName: string,
     toName: string,
   }) => {
+    console.log(props);
+    
     socket.emit('send_message', props);
   };
 
@@ -76,30 +82,6 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
     <div
       className={styles['chat-page-content']}
     >
-      <div className={styles['delivery-man-info']}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '20px',
-          }}
-        >
-          <div
-            className={styles['chat-user-image']}
-            style={{
-              backgroundImage: `url('${to.photo}')`,
-            }}
-          ></div>
-          <h1
-            style={{
-              fontSize: '1.2rem',
-              height: '20px',
-            }}
-          >
-            {to.name}
-          </h1>
-        </div>
-      </div>
       <MessageList messages={messages} />
       <MessageInput addMessage={addMessage} />
     </div>
