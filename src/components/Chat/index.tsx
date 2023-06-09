@@ -5,8 +5,7 @@ import { MessageList } from '../MessageList';
 import { MessageInput } from '../MessageInput';
 import { socket } from '../../services/api/websocket';
 
-// @ts-ignore
-import { ChatService } from '../../services/api/fetchs/chat';
+import { ChatService } from '../../services/api/fetchs/Chat';
 
 // const popupVariants = {
 //   hidden: { opacity: 0, y: '-100%' },
