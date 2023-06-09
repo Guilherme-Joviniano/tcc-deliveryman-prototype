@@ -38,7 +38,6 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
   }, []);
 
   const addMessage = (content: string) => {
-    
     sendMessageIOSocket({
       content,
       timestamp: new Date().toISOString(),
