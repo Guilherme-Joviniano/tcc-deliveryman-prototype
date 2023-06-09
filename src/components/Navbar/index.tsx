@@ -8,6 +8,7 @@ interface IUser {
 }
 
 export const Navbar =  () => {
+    // @ts-ignore
     const [user, _] = useState<IUser>(JSON.parse(localStorage.getItem("user") ? localStorage.getItem("user") : ""))
     
     return (

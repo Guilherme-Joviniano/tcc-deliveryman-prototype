@@ -14,14 +14,16 @@ import { LoadScript } from '@react-google-maps/api'
 export const Home = () => {
     const notifier = new Notification()
     const [loading, setLoading] = useState("skeleton")
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') as string))
+    const [user] = useState(JSON.parse(localStorage.getItem('user') as string))
     const [order, setOrder] = useState<any>(null)
     const [route, setRoute] = useState<IRoute>({
         origin: [0,0],
         arrived: [0,0],
         waypoints: null
     })
+    //@ts-ignore
     const [time, setTime] = useState(null)
+    //@ts-ignore
     const [distance, setDistance] = useState(null)
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const MessageInput = (props: { addMessage: (value: string) => any }) => {
   const { addMessage } = props

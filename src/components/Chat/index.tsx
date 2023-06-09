@@ -1,16 +1,17 @@
 import styles from './styles.module.css';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MessageList } from '../MessageList';
 import { MessageInput } from '../MessageInput';
 import { socket } from '../../services/api/websocket';
 
-import { ChatService } from '../../services/api/fetchs/chat';
+// @ts-ignore
+import { ChatService } from '../../services/api/fetchs/chat/index';
 
-const popupVariants = {
-  hidden: { opacity: 0, y: '-100%' },
-  visible: { opacity: 1, y: 0 },
-};
+// const popupVariants = {
+//   hidden: { opacity: 0, y: '-100%' },
+//   visible: { opacity: 1, y: 0 },
+// };
 
 interface IMessage {
   content: string;
@@ -24,7 +25,7 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
   const [messages, setMessages] = useState<IMessage | any[]>([]);
 
 
-  const [to, setTo] = useState(_to);
+  const [to] = useState(_to);
 
   // @ts-ignore
   const [user, _] = useState(JSON.parse(localStorage.getItem('user')));
@@ -48,7 +49,7 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
     });
 
     
-
+    // @ts-ignore
     setMessages([...messages, { content, sender: 'user' }]);
   };
 
@@ -77,11 +78,12 @@ export const Chat = (args: { from: number, _to: { name: string, id: number, phot
     socket.emit('send_message', props);
   };
 
+  // @ts-ignore
   return (
     <div
       className={styles['chat-page-content']}
     >
-      <MessageList messages={messages} />
+      <MessageList messages={messages as IMessage[]} />
       <MessageInput addMessage={addMessage} />
     </div>
   );

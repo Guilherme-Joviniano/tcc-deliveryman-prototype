@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const MessageList = (props: { messages: any[] }) => {
     const { messages } = props;

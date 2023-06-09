@@ -1,4 +1,4 @@
-import { GoogleMap, DirectionsService, LoadScript, DirectionsRenderer, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, DirectionsRenderer } from '@react-google-maps/api';
 
 import React, { useState, useEffect } from 'react'
 
