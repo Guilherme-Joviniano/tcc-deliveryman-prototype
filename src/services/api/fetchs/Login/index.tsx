@@ -2,7 +2,7 @@ import axios from "axios";
 
 class Login {
     private API = axios.create({
-        baseURL: "https://yvypora-backend.eastus.cloudapp.azure.com/api/",
+        baseURL: "https://yvypora.eastus.cloudapp.azure.com/api/",
         headers: {
             common: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -10,7 +10,7 @@ class Login {
         }
     })
     public async login(): Promise<string> {
-        const { data } = await axios.post('https://yvypora-backend.eastus.cloudapp.azure.com/api/commons/login/', {
+        const { data } = await axios.post('https://yvypora.eastus.cloudapp.azure.com/api/commons/login/', {
             email: "entregador@gmail.com",
             password: "12345678"
         });
