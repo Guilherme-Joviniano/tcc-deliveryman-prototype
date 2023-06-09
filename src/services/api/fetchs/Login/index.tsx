@@ -2,7 +2,7 @@ import axios from "axios";
 
 class Login {
     private API = axios.create({
-        baseURL: "http://yvypora-backend.eastus.cloudapp.azure.com/api/",
+        baseURL: "https://yvypora-backend.eastus.cloudapp.azure.com/api/",
         headers: {
             common: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

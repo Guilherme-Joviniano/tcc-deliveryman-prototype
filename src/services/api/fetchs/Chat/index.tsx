@@ -13,7 +13,7 @@ interface IMessageService {
 
 export class ChatService {
     private API = axios.create({
-        baseURL: "http://yvypora-backend.eastus.cloudapp.azure.com/no-relational/"
+        baseURL: "https://yvypora-backend.eastus.cloudapp.azure.com/no-relational/"
     })
 
     async index(senderId: number, receiverId: number): Promise<{ error: boolean, data: IMessageService[], code: number }> {
