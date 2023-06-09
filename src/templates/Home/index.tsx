@@ -2,11 +2,11 @@ import { socket } from '../../services/api/websocket'
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 
-import Route from '../../components/Route'
+import Route from '../../components/Route/index'
 import {
     Navbar
-} from '../../components/Navbar'
-import { Chat } from '../../components/Chat'
+} from '../../components/Navbar/index'
+import { Chat } from '../../components/Chat/index'
 import { Notification } from '../../helpers/Notification'
 import { IRoute, IntentOfTravel } from '../../interfaces/travel.interfaces'
 import { LoadScript } from '@react-google-maps/api'
@@ -23,6 +23,10 @@ export const Home = () => {
     })
     const [time, setTime] = useState(null)
     const [distance, setDistance] = useState(null)
+
+    useEffect(() => {
+        socket.connect()
+    }, [])
 
     const acceptTravel = (data: IntentOfTravel ) => {
         socket.emit("intent_of_travel", { 
@@ -58,6 +62,7 @@ export const Home = () => {
             socket.off("accept_order")
         }
     }, [])
+
     useEffect(() => {
         if (order) {
             setLoading(`${styles['chat-column']}`)
@@ -84,16 +89,25 @@ export const Home = () => {
                 { order ? <Chat
                     key={1}
                     _to={{
-                        id: order?.deliveryman?.id as number,
-                        name: order?.deliveryman?.name as string,
-                        photo: order?.deliveryman?.picture_uri as string,
+                        id: order?.costumer_addresses.costumer?.id as number,
+                        name: order?.costumer_addresses.costumer?.name as string,
+                        photo: order?.costumer_addresses.costumer?.picture_uri as string,
                     }}
                     from={user.id}
                 /> : "Aguardando Corrida iniciar...."}
             </div>
+            
             <div className="flex">
-                <div className="button">Pedidos Recolhidos</div>
-                <div className="button red">Finalizar Corrida</div>
+                <div className="button" onClick={() => {
+                    console.log("teste", order)
+                    socket.emit("retreat_product_finished", { order });
+                }} >Pedidos Recolhidos</div>
+                <div className="button" onClick={
+                     () => {
+                        console.log("teste", order)
+                        socket.emit("order_arrived", { order });
+                    }
+                }>Finalizar Corrida</div>
             </div>
             </div>
         </div>
