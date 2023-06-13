@@ -43,7 +43,7 @@ export const Home = () => {
             console.log(data);
             setOrder(data.order)
             setRoute(data.routes)
-            await notifier.notifyAsForm("Quer Aceitar Uma Nova Viajgem ?", () => {
+            await notifier.notifyAsForm("Quer Aceitar Uma Nova Viagem ?", () => {
                 acceptTravel(data)
             }, () => {
                 // TODO
@@ -57,7 +57,7 @@ export const Home = () => {
 
     useEffect(() => {
         socket.on("accept_order", async () => {
-            await notifier.notify("success", "Viajem Finalizada Com Sucesso!", 10000)
+            await notifier.notify("success", "Viagem Finalizada Com Sucesso!", 10000)
         })
 
         return () => {
